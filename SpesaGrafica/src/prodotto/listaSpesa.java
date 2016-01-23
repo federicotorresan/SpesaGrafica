@@ -17,23 +17,20 @@ public class listaSpesa {
 		if (numProdotti < maxProdotti) {
 			lista[numProdotti++] = P;
 		} else {
-			throw exception("La lista è piena");
+			throw new Exception("La lista è piena");
 		}
 	}
 	public void eliminaProdotto(int pos) throws Exception {
-		if(numProdotti == 0 || pos > numProdotti){
+		if(numProdotti != 0 || pos < numProdotti){
 			for (int i = pos;i < numProdotti;i++){
 				lista[i]=lista[i+1];
 			}
+			numProdotti--;
 		}
 		else{
-			throw exception("errore nell'eliminazione");
+			throw new Exception("Errore nell'eliminazione");
 		}
 		
-	}
-	private Exception exception(String string) { 
-		// TODO Auto-generated method stub
-		return null;
 	}
 
 	public double calcolaTotale() {
