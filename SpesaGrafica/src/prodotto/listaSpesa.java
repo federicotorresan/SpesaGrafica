@@ -20,8 +20,18 @@ public class listaSpesa {
 			throw exception("La lista è piena");
 		}
 	}
-
-	private Exception exception(String string) {
+	public void eliminaProdotto(int pos) throws Exception {
+		if(numProdotti == 0 || pos > numProdotti){
+			for (int i = pos;i < numProdotti;i++){
+				lista[i]=lista[i+1];
+			}
+		}
+		else{
+			throw exception("errore nell'eliminazione");
+		}
+		
+	}
+	private Exception exception(String string) { 
 		// TODO Auto-generated method stub
 		return null;
 	}

@@ -4,10 +4,11 @@ public class listaTest {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
-
+		double totale;
 		listaSpesa ls = new listaSpesa(true);
 		Prodotti P = new Prodotti(12, "caramelle", 100);
 		P.applicaSconto();
+		totale =ls.calcolaTotale();
 		Nalimentare na= new Nalimentare (5, "chiave", 10, "plastica");
 		na.applicaSconto();
 		Alimentare a= new Alimentare (8, "pane", 5, new Data(12,06,2018));
