@@ -4,7 +4,7 @@ public class Alimentare extends Prodotti {
 
 	Data scadenza;
 
-	public Alimentare(int codice, String descrizione, int prezzo, Data scadenza) {
+	public Alimentare(String codice, String descrizione, int prezzo, Data scadenza) {
 		super(codice, descrizione, prezzo);
 		this.scadenza = scadenza;
 	}

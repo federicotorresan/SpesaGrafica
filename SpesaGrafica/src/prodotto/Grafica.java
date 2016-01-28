@@ -109,6 +109,12 @@ public class Grafica {
 		btnNo.setText("No");
 		
 		Button btnAggiungi = new Button(shlSwtApplication, SWT.NONE);
+		btnAggiungi.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			 Prodotti p = new Prodotti(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()));
+			}
+		});
 		btnAggiungi.setBounds(306, 477, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 		
@@ -120,6 +126,7 @@ public class Grafica {
 		lblListaSpesa.setText("Lista Spesa");
 		
 		Button btnAlimentare = new Button(shlSwtApplication, SWT.RADIO);
+		btnAlimentare.setSelection(true);
 		btnAlimentare.setText("Alimentare");
 		btnAlimentare.setBounds(10, 225, 90, 16);
 		
@@ -127,6 +134,7 @@ public class Grafica {
 		btnNonAlimentare.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
 			}
 		});
 		btnNonAlimentare.setBounds(10, 280, 111, 16);

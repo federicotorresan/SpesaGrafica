@@ -2,27 +2,27 @@ package prodotto;
 
 public class Prodotti {
 
-	protected int codice;
+	protected String codice;
 	protected float prezzo;
 	protected String descrizione;
 
 	public Prodotti() {
-		this.codice = 0;
+		this.codice = "";
 		this.prezzo = 0;
 		this.descrizione = "";
 	}
 
-	public Prodotti(int codice2, String descrizione2, int prezzo2) {
+	public Prodotti(String codice2, String descrizione2, int prezzo2) {
 		this.codice = codice2;
 		this.descrizione = descrizione2;
 		this.prezzo = prezzo2;
 	}
 
-	public void setCodice(int codice) {
+	public void setCodice(String codice) {
 		this.codice = codice;
 	}
 
-	public int getCodice() {
+	public String getCodice() {
 		return codice;
 	}
 

@@ -6,11 +6,11 @@ public class listaTest {
 		// TODO Auto-generated method stub
 		
 		listaSpesa ls = new listaSpesa(true);
-		Prodotti P = new Prodotti(12, "caramelle", 100);
+		Prodotti P = new Prodotti("esrh", "caramelle", 100);
 		P.applicaSconto();
-		Nalimentare na= new Nalimentare (5, "chiave", 10, "plastica");
+		Nalimentare na= new Nalimentare ("<dsgvE", "chiave", 10, "plastica");
 		na.applicaSconto();
-		Alimentare a= new Alimentare (8, "pane", 5, new Data(12,06,2018));
+		Alimentare a= new Alimentare ("qaewf", "pane", 5, new Data(12,06,2018));
 			ls.aggiungiProdotto(P);
 			ls.aggiungiProdotto(na);
 			//ls.aggiungiProdotto(a);
