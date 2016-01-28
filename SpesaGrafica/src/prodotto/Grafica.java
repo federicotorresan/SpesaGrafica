@@ -9,8 +9,15 @@ import org.eclipse.swt.widgets.Button;
 import org.eclipse.swt.widgets.DateTime;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
+import org.eclipse.swt.graphics.GC;
 import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.custom.StyledText;
+import org.eclipse.swt.widgets.Combo;
+import org.eclipse.jface.viewers.ListViewer;
+import org.eclipse.swt.widgets.Table;
+import org.eclipse.swt.widgets.TableColumn;
+import org.eclipse.swt.widgets.Canvas;
+import org.eclipse.wb.swt.SWTResourceManager;
 
 public class Grafica {
 
@@ -94,6 +101,10 @@ public class Grafica {
 		lblTessera.setBounds(10, 186, 55, 15);
 		lblTessera.setText("Tessera");
 		
+			Canvas canvas = new Canvas(shlSwtApplication, SWT.NONE);
+		canvas.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
+		canvas.setBounds(356, 30, 248, 363);
+		
 		Button btnSi = new Button(shlSwtApplication, SWT.CHECK);
 		btnSi.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -113,16 +124,25 @@ public class Grafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 			 Prodotti p = new Prodotti(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()));
+			 try {
+				ls.aggiungiProdotto(p);
+			} catch (Exception e1) {
+				// TODO Auto-generated catch block
+				e1.printStackTrace();
+			}
+			
+			 GC gc = new GC(canvas);
+			 gc.drawText(codice.getText(), 10, 10);
 			}
 		});
 		btnAggiungi.setBounds(306, 477, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 		
 		List list = new List(shlSwtApplication, SWT.BORDER);
-		list.setBounds(361, 207, 214, 213);
+		list.setBounds(38, 309, 214, 213);
 		
 		Label lblListaSpesa = new Label(shlSwtApplication, SWT.NONE);
-		lblListaSpesa.setBounds(361, 186, 69, 15);
+		lblListaSpesa.setBounds(284, 372, 69, 15);
 		lblListaSpesa.setText("Lista Spesa");
 		
 		Button btnAlimentare = new Button(shlSwtApplication, SWT.RADIO);
@@ -153,6 +173,8 @@ public class Grafica {
 		
 		DateTime dateTime = new DateTime(shlSwtApplication, SWT.BORDER);
 		dateTime.setBounds(136, 247, 80, 24);
+		
+	
 
 	}
 }
