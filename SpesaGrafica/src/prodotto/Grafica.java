@@ -101,10 +101,6 @@ public class Grafica {
 		lblTessera.setBounds(10, 186, 55, 15);
 		lblTessera.setText("Tessera");
 		
-			Canvas canvas = new Canvas(shlSwtApplication, SWT.NONE);
-		canvas.setBackground(SWTResourceManager.getColor(SWT.COLOR_WHITE));
-		canvas.setBounds(356, 30, 248, 363);
-		
 		Button btnSi = new Button(shlSwtApplication, SWT.CHECK);
 		btnSi.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -119,6 +115,10 @@ public class Grafica {
 		btnNo.setBounds(179, 185, 42, 16);
 		btnNo.setText("No");
 		
+		List list = new List(shlSwtApplication, SWT.BORDER);
+		list.setBounds(364, 30, 214, 365);
+		list.add("Codice" + "  | " + " Descrizione"  +  " | " + "Prezzo");
+		
 		Button btnAggiungi = new Button(shlSwtApplication, SWT.NONE);
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -130,16 +130,12 @@ public class Grafica {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();
 			}
-			
-			 GC gc = new GC(canvas);
-			 gc.drawText(codice.getText(), 10, 10);
+			 list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText());
 			}
 		});
 		btnAggiungi.setBounds(306, 477, 75, 25);
 		btnAggiungi.setText("Aggiungi");
 		
-		List list = new List(shlSwtApplication, SWT.BORDER);
-		list.setBounds(38, 309, 214, 213);
 		
 		Label lblListaSpesa = new Label(shlSwtApplication, SWT.NONE);
 		lblListaSpesa.setBounds(284, 372, 69, 15);
@@ -173,6 +169,22 @@ public class Grafica {
 		
 		DateTime dateTime = new DateTime(shlSwtApplication, SWT.BORDER);
 		dateTime.setBounds(136, 247, 80, 24);
+		
+		Button btnElimina = new Button(shlSwtApplication, SWT.NONE);
+		btnElimina.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				try {
+					ls.eliminaProdotto(list.getSelectionIndex());
+					list.remove(list.getSelectionIndex());
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
+			}
+		});
+		btnElimina.setBounds(220, 477, 75, 25);
+		btnElimina.setText("Elimina");
 		
 	
 
