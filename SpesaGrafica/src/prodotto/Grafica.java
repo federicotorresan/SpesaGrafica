@@ -27,7 +27,7 @@ public class Grafica {
 	private Text codice;
 	private Text prezzo;
 	private Text descrizione;
-	private Text text;
+	private Text totale;
 
 	/**
 	 * Launch the application.
@@ -107,6 +107,12 @@ public class Grafica {
 		btnCarica.setText("Carica");
 		
 		Button btnTotale = new Button(shlSwtApplication, SWT.NONE);
+		btnTotale.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				totale.setText(String.valueOf(ls.calcolaTotale()));
+			}
+		});
 		btnTotale.setBounds(549, 477, 75, 25);
 		btnTotale.setText("Totale");
 		
@@ -216,10 +222,9 @@ public class Grafica {
 		lblTotale.setBounds(453, 429, 55, 15);
 		lblTotale.setText("Totale");
 		
-		text = new Text(shlSwtApplication, SWT.BORDER);
-		text.setBounds(502, 426, 76, 21);
+		totale = new Text(shlSwtApplication, SWT.BORDER);
+		totale.setBounds(502, 426, 76, 21);
 		
-	
-
+		
 	}
 }
