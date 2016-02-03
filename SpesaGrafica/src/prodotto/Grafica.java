@@ -68,6 +68,18 @@ public class Grafica {
 		lblCodice.setBounds(10, 30, 55, 15);
 		lblCodice.setText("Codice");
 		
+		
+		Button btnAlimentare = new Button(shlSwtApplication, SWT.RADIO);
+		btnAlimentare.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+			}
+		});
+		btnAlimentare.setSelection(true);
+		btnAlimentare.setText("Alimentare");
+		btnAlimentare.setBounds(10, 225, 90, 16);
+		
+		
 		codice = new Text(shlSwtApplication, SWT.BORDER);
 		codice.setBounds(100, 24, 76, 21);
 		
@@ -115,6 +127,9 @@ public class Grafica {
 		btnNo.setBounds(179, 185, 42, 16);
 		btnNo.setText("No");
 		
+			Text materiale = new Text(shlSwtApplication, SWT.BORDER);
+		materiale.setBounds(136, 299, 111, 21);
+		
 		List list = new List(shlSwtApplication, SWT.BORDER);
 		list.setBounds(364, 30, 214, 365);
 		list.add("Codice" + "  | " + " Descrizione"  +  " | " + "Prezzo");
@@ -123,14 +138,30 @@ public class Grafica {
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-			 Prodotti p = new Prodotti(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()));
-			 try {
-				ls.aggiungiProdotto(p);
-			} catch (Exception e1) {
-				// TODO Auto-generated catch block
-				e1.printStackTrace();
-			}
-			 list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText());
+				if(btnAlimentare.getSelection()==true){
+					Data c = new Data();
+					Alimentare a = new Alimentare(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()),c);
+					 try {
+							ls.aggiungiProdotto(a); 
+							list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText() + " alimentare");
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				}
+				else{
+					Nalimentare a = new Nalimentare(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()),materiale.getText()) ;
+					 try {
+							ls.aggiungiProdotto(a);
+							list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText() + " Non alimentare");
+						} catch (Exception e1) {
+							// TODO Auto-generated catch block
+							e1.printStackTrace();
+						}
+				}
+			// Prodotti p = new Prodotti(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()));
+			
+			
 			}
 		});
 		btnAggiungi.setBounds(306, 477, 75, 25);
@@ -140,12 +171,7 @@ public class Grafica {
 		Label lblListaSpesa = new Label(shlSwtApplication, SWT.NONE);
 		lblListaSpesa.setBounds(284, 372, 69, 15);
 		lblListaSpesa.setText("Lista Spesa");
-		
-		Button btnAlimentare = new Button(shlSwtApplication, SWT.RADIO);
-		btnAlimentare.setSelection(true);
-		btnAlimentare.setText("Alimentare");
-		btnAlimentare.setBounds(10, 225, 90, 16);
-		
+
 		Button btnNonAlimentare = new Button(shlSwtApplication, SWT.RADIO);
 		btnNonAlimentare.addSelectionListener(new SelectionAdapter() {
 			@Override
@@ -160,15 +186,14 @@ public class Grafica {
 		lblMateriale.setBounds(38, 302, 55, 15);
 		lblMateriale.setText("Materiale");
 		
-		Text materiale = new Text(shlSwtApplication, SWT.BORDER);
-		materiale.setBounds(136, 299, 111, 21);
-		
+	
 		Label lblDataScadenza = new Label(shlSwtApplication, SWT.NONE);
 		lblDataScadenza.setBounds(38, 247, 83, 15);
 		lblDataScadenza.setText("Data scadenza");
 		
 		DateTime dateTime = new DateTime(shlSwtApplication, SWT.BORDER);
 		dateTime.setBounds(136, 247, 80, 24);
+	
 		
 		Button btnElimina = new Button(shlSwtApplication, SWT.NONE);
 		btnElimina.addSelectionListener(new SelectionAdapter() {
