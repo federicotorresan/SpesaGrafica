@@ -27,6 +27,7 @@ public class Grafica {
 	private Text codice;
 	private Text prezzo;
 	private Text descrizione;
+	private Text text;
 
 	/**
 	 * Launch the application.
@@ -185,6 +186,13 @@ public class Grafica {
 		});
 		btnElimina.setBounds(220, 477, 75, 25);
 		btnElimina.setText("Elimina");
+		
+		Label lblTotale = new Label(shlSwtApplication, SWT.NONE);
+		lblTotale.setBounds(453, 429, 55, 15);
+		lblTotale.setText("Totale");
+		
+		text = new Text(shlSwtApplication, SWT.BORDER);
+		text.setBounds(502, 426, 76, 21);
 		
 	
 
