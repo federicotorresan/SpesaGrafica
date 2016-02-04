@@ -2,7 +2,7 @@ package prodotto;
 
 public class listaSpesa {
 	boolean tessera;
-	private Prodotti lista[];
+	protected Prodotti lista[];
 	private int numProdotti;
 	private int maxProdotti;
 
@@ -31,6 +31,22 @@ public class listaSpesa {
 			throw new Exception("Errore nell'eliminazione");
 		}
 		
+	}
+
+	public Prodotti[] getLista() {
+		return lista;
+	}
+
+	public void setLista(Prodotti[] lista) {
+		this.lista = lista;
+	}
+
+	public int getNumProdotti() {
+		return numProdotti;
+	}
+
+	public void setNumProdotti(int numProdotti) {
+		this.numProdotti = numProdotti;
 	}
 
 	public double calcolaTotale() {

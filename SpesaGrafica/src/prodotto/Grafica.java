@@ -1,6 +1,7 @@
 package prodotto;
 
 import org.eclipse.swt.widgets.Display;
+import java.io.*;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Text;
 import org.eclipse.swt.SWT;
@@ -18,6 +19,19 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.wb.swt.SWTResourceManager;
+
+/*
+ * 
+
+
+ * 
+ * 
+ * 
+ * 
+ * 
+ * 
+ */
+
 
 public class Grafica {
 
@@ -99,6 +113,28 @@ public class Grafica {
 		descrizione.setBounds(100, 103, 177, 58);
 		
 		Button btnSalva = new Button(shlSwtApplication, SWT.NONE);
+		btnSalva.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+
+			      try
+			     {
+			          FileOutputStream prova = new FileOutputStream("prova.txt");
+			          PrintStream scrivi = new PrintStream(prova);
+			          for(int i=0;i<ls.getNumProdotti();i++)
+			          {
+			                scrivi.println(ls.lista);
+			          }
+			      }
+			      catch (IOException h)
+			      {
+			          System.out.println("Errore: " + h);
+			          System.exit(1);
+			      }
+				
+			}
+		});
 		btnSalva.setBounds(387, 477, 75, 25);
 		btnSalva.setText("Salva");
 		
@@ -160,13 +196,13 @@ public class Grafica {
 					Nalimentare a = new Nalimentare(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()),materiale.getText()) ;
 					 try {
 							ls.aggiungiProdotto(a);
-							list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText() + " Non alimentare");
+							list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText() + " Non alimentare" + list.getSelectionIndex());
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
 						}
 				}
-			// Prodotti p = new Prodotti(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()));
+			
 			
 			
 			}
