@@ -1,5 +1,10 @@
 package prodotto;
 
+import java.io.FileInputStream;
+import java.io.ObjectInputStream;
+
+import org.eclipse.jface.dialogs.MessageDialog;
+
 public class listaSpesa {
 	boolean tessera;
 	protected Prodotti lista[];
@@ -54,6 +59,11 @@ public class listaSpesa {
 		for (int i = 0; i < numProdotti; i++) {
 			totale = totale + lista[i].getPrezzo();
 		}
+		if(tessera == true)
+			totale = (totale * 95) / 100;
 		return totale;
 	}
+	
+	
+	
 }

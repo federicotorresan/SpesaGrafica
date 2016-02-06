@@ -19,18 +19,7 @@ import org.eclipse.swt.widgets.Table;
 import org.eclipse.swt.widgets.TableColumn;
 import org.eclipse.swt.widgets.Canvas;
 import org.eclipse.wb.swt.SWTResourceManager;
-
-/*
- * 
-
-
- * 
- * 
- * 
- * 
- * 
- * 
- */
+import org.eclipse.swt.widgets.Composite;
 
 
 public class Grafica {
@@ -116,7 +105,6 @@ public class Grafica {
 		btnSalva.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
 
 			      try
 			     {
@@ -124,7 +112,12 @@ public class Grafica {
 			          PrintStream scrivi = new PrintStream(prova);
 			          for(int i=0;i<ls.getNumProdotti();i++)
 			          {
-			                scrivi.println(ls.lista);
+			        	  if (ls.lista[i] instanceof Alimentare) {
+			        		  scrivi.println("Alimentare" + "\r\n" + ls.lista[i].codice + "\r\n" + ls.lista[i].descrizione + "\r\n" + ls.lista[i].prezzo + "\r\n" );  
+			        	  } else {
+			        		  scrivi.println("Nalimentare" + "\r\n" + ls.lista[i].codice + "\r\n" + ls.lista[i].descrizione + "\r\n" + ls.lista[i].prezzo + "\r\n" );  
+			        	  }
+			                
 			          }
 			      }
 			      catch (IOException h)
@@ -139,6 +132,12 @@ public class Grafica {
 		btnSalva.setText("Salva");
 		
 		Button btnCarica = new Button(shlSwtApplication, SWT.NONE);
+		btnCarica.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				
+			}
+		});
 		btnCarica.setBounds(468, 477, 75, 25);
 		btnCarica.setText("Carica");
 		
@@ -156,25 +155,11 @@ public class Grafica {
 		lblTessera.setBounds(10, 186, 55, 15);
 		lblTessera.setText("Tessera");
 		
-		Button btnSi = new Button(shlSwtApplication, SWT.CHECK);
-		btnSi.addSelectionListener(new SelectionAdapter() {
-			@Override
-			public void widgetSelected(SelectionEvent e) {
-				
-			}
-		});
-		btnSi.setBounds(136, 184, 30, 16);
-		btnSi.setText("Si");
-		
-		Button btnNo = new Button(shlSwtApplication, SWT.CHECK);
-		btnNo.setBounds(179, 185, 42, 16);
-		btnNo.setText("No");
-		
 			Text materiale = new Text(shlSwtApplication, SWT.BORDER);
 		materiale.setBounds(136, 299, 111, 21);
 		
 		List list = new List(shlSwtApplication, SWT.BORDER);
-		list.setBounds(364, 30, 214, 365);
+		list.setBounds(364, 30, 260, 365);
 		list.add("Codice" + "  | " + " Descrizione"  +  " | " + "Prezzo");
 		
 		Button btnAggiungi = new Button(shlSwtApplication, SWT.NONE);
@@ -196,7 +181,7 @@ public class Grafica {
 					Nalimentare a = new Nalimentare(codice.getText(),descrizione.getText(),Integer.parseInt(prezzo.getText()),materiale.getText()) ;
 					 try {
 							ls.aggiungiProdotto(a);
-							list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText() + " Non alimentare" + list.getSelectionIndex());
+							list.add(codice.getText() + "  |  " + descrizione.getText() + "  |  " + prezzo.getText() + " Non alimentare" );
 						} catch (Exception e1) {
 							// TODO Auto-generated catch block
 							e1.printStackTrace();
@@ -260,6 +245,15 @@ public class Grafica {
 		
 		totale = new Text(shlSwtApplication, SWT.BORDER);
 		totale.setBounds(502, 426, 76, 21);
+		
+		Button button = new Button(shlSwtApplication, SWT.CHECK);
+		button.addSelectionListener(new SelectionAdapter() {
+			@Override
+			public void widgetSelected(SelectionEvent e) {
+				ls.tessera=button.getSelection();
+			}
+		});
+		button.setBounds(64, 185, 93, 16);
 		
 		
 	}
