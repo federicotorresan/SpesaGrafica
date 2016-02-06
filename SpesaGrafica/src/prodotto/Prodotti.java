@@ -12,7 +12,7 @@ public class Prodotti {
 		this.descrizione = "";
 	}
 
-	public Prodotti(String codice2, String descrizione2, int prezzo2) {
+	public Prodotti(String codice2, String descrizione2, float prezzo2) {
 		this.codice = codice2;
 		this.descrizione = descrizione2;
 		this.prezzo = prezzo2;

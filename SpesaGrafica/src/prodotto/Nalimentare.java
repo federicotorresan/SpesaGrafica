@@ -4,7 +4,7 @@ public class Nalimentare extends Prodotti {
 
 	private String materiale;
 
-	public Nalimentare(String codice2, String descrizione2, int prezzo2, String materiale) {
+	public Nalimentare(String codice2, String descrizione2, float prezzo2, String materiale) {
 		super(codice2, descrizione2, prezzo2);
 		this.materiale = materiale;
 	}

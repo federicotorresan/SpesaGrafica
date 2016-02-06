@@ -113,9 +113,9 @@ public class Grafica {
 			          for(int i=0;i<ls.getNumProdotti();i++)
 			          {
 			        	  if (ls.lista[i] instanceof Alimentare) {
-			        		  scrivi.println("Alimentare" + "\r\n" + ls.lista[i].codice + "\r\n" + ls.lista[i].descrizione + "\r\n" + ls.lista[i].prezzo + "\r\n" );  
+			        		  scrivi.println("Alimentare" + "\r\n" + ls.lista[i].codice + "\r\n" + ls.lista[i].descrizione + "\r\n" + ls.lista[i].prezzo );  
 			        	  } else {
-			        		  scrivi.println("Nalimentare" + "\r\n" + ls.lista[i].codice + "\r\n" + ls.lista[i].descrizione + "\r\n" + ls.lista[i].prezzo + "\r\n" );  
+			        		  scrivi.println("Nalimentare" + "\r\n" + ls.lista[i].codice + "\r\n" + ls.lista[i].descrizione + "\r\n" + ls.lista[i].prezzo );  
 			        	  }
 			                
 			          }
@@ -131,11 +131,47 @@ public class Grafica {
 		btnSalva.setBounds(387, 477, 75, 25);
 		btnSalva.setText("Salva");
 		
+		List list = new List(shlSwtApplication, SWT.BORDER);
+		list.setBounds(364, 30, 260, 365);
+		list.add("Codice" + "  | " + " Descrizione"  +  " | " + "Prezzo");
+		
 		Button btnCarica = new Button(shlSwtApplication, SWT.NONE);
 		btnCarica.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				
+				//File di lettura
+				BufferedReader reader;
+				try {
+					reader = new BufferedReader(new FileReader("prova.txt"));
+					
+					String line = reader.readLine();
+					System.out.println(line);
+					while (line!=null) {
+						if (line.equalsIgnoreCase("Alimentare")) {
+							String codice = reader.readLine();
+							String descrizione = reader.readLine();
+							String prezzo = reader.readLine();
+							Data c = new Data();
+							Alimentare a = new Alimentare(codice,descrizione,Float.parseFloat(prezzo),c);
+							ls.aggiungiProdotto(a); 
+							list.add(codice + "  |  " + descrizione + "  |  " + prezzo + " alimentare");
+						}
+						if (line.equalsIgnoreCase("Nalimentare")) {
+							String codice = reader.readLine();
+							String descrizione = reader.readLine();
+							String prezzo = reader.readLine();
+							
+							Data c = new Data();
+							Nalimentare a = new Nalimentare(codice,descrizione,Float.parseFloat(prezzo),"");
+							ls.aggiungiProdotto(a); 
+							list.add(codice + "  |  " + descrizione + "  |  " + prezzo + "Nalimentare");
+						}
+					}
+					
+				} catch (Exception e1) {
+					// TODO Auto-generated catch block
+					e1.printStackTrace();
+				}
 			}
 		});
 		btnCarica.setBounds(468, 477, 75, 25);
@@ -158,9 +194,7 @@ public class Grafica {
 			Text materiale = new Text(shlSwtApplication, SWT.BORDER);
 		materiale.setBounds(136, 299, 111, 21);
 		
-		List list = new List(shlSwtApplication, SWT.BORDER);
-		list.setBounds(364, 30, 260, 365);
-		list.add("Codice" + "  | " + " Descrizione"  +  " | " + "Prezzo");
+
 		
 		Button btnAggiungi = new Button(shlSwtApplication, SWT.NONE);
 		btnAggiungi.addSelectionListener(new SelectionAdapter() {
