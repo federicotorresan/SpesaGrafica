@@ -143,29 +143,28 @@ public class Grafica {
 				BufferedReader reader;
 				try {
 					reader = new BufferedReader(new FileReader("prova.txt"));
-					
+					String codice,descrizione,prezzo;
 					String line = reader.readLine();
 					System.out.println(line);
 					while (line!=null) {
 						if (line.equalsIgnoreCase("Alimentare")) {
-							String codice = reader.readLine();
-							String descrizione = reader.readLine();
-							String prezzo = reader.readLine();
+							codice = reader.readLine();
+							descrizione = reader.readLine();
+							prezzo = reader.readLine();
 							Data c = new Data();
 							Alimentare a = new Alimentare(codice,descrizione,Float.parseFloat(prezzo),c);
 							ls.aggiungiProdotto(a); 
 							list.add(codice + "  |  " + descrizione + "  |  " + prezzo + " alimentare");
 						}
 						if (line.equalsIgnoreCase("Nalimentare")) {
-							String codice = reader.readLine();
-							String descrizione = reader.readLine();
-							String prezzo = reader.readLine();
-							
-							Data c = new Data();
+							codice = reader.readLine();
+							descrizione = reader.readLine();
+							prezzo = reader.readLine();
 							Nalimentare a = new Nalimentare(codice,descrizione,Float.parseFloat(prezzo),"");
 							ls.aggiungiProdotto(a); 
 							list.add(codice + "  |  " + descrizione + "  |  " + prezzo + "Nalimentare");
 						}
+						line = reader.readLine();
 					}
 					
 				} catch (Exception e1) {
